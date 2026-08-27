@@ -1,0 +1,98 @@
+TMDB MOVIE DATASET ANALYSIS REPORT
+==================================
+
+Generated from: tmdb-movies.csv
+
+TASK 1 - MOVIES SORTED BY RELEASE DATE
+---------------------------------------
+Newest release:
+Movie: Martyrs
+Release date: 12/31/15
+Oldest release:
+Movie: The Unforgiven
+Release date: 1/1/60
+Output file: movies_sorted_by_date.csv
+
+TASK 2 - MOVIES WITH AVERAGE RATING ABOVE 7.5
+-----------------------------------------------
+Total movies: 350
+Output file: movies_rating_over_7.5.csv
+
+TASK 3 - HIGHEST AND LOWEST REVENUE
+------------------------------------
+Highest revenue:
+Movie: Avatar
+Revenue: 2781505847
+
+Lowest non-zero revenue: 2
+Movie(s):
+- Shattered Glass
+- Mallrats
+
+TASK 4 - TOTAL REVENUE
+----------------------
+Total Revenue: 432719225875
+
+TASK 5 - TOP 10 MOVIES WITH HIGHEST PROFIT
+-------------------------------------------
+Profit          Movie
+2544505847      Avatar
+1868178225      Star Wars: The Force Awakens
+1645034188      Titanic
+1363528810      Jurassic World
+1316249360      Furious 7
+1299557910      The Avengers
+1202817822      Harry Potter and the Deathly Hallows: Part 2
+1125035767      Avengers: Age of Ultron
+1124219009      Frozen
+1084279658      The Net
+
+TASK 6 - DIRECTORS AND ACTORS WITH THE MOST MOVIES
+---------------------------------------------------
+Top 10 directors:
+     46 Woody Allen
+     34 Clint Eastwood
+     31 Martin Scorsese
+     30 Steven Spielberg
+     23 Steven Soderbergh
+     23 Ridley Scott
+     22 Ron Howard
+     21 Joel Schumacher
+     20 Tim Burton
+     20 Brian De Palma
+
+Top 10 actors:
+     72 Robert De Niro
+     71 Samuel L. Jackson
+     62 Bruce Willis
+     61 Nicolas Cage
+     53 Michael Caine
+     51 Robin Williams
+     50 John Cusack
+     49 Morgan Freeman
+     49 John Goodman
+     48 Susan Sarandon
+
+TASK 7 - NUMBER OF MOVIES BY GENRE
+----------------------------------
+   4760 Drama
+   3793 Comedy
+   2907 Thriller
+   2384 Action
+   1712 Romance
+   1637 Horror
+   1471 Adventure
+   1354 Crime
+   1231 Family
+   1229 Science Fiction
+    916 Fantasy
+    810 Mystery
+    699 Animation
+    520 Documentary
+    408 Music
+    334 History
+    270 War
+    188 Foreign
+    167 TV Movie
+    165 Western
+
