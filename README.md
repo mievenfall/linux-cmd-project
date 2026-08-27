@@ -5,6 +5,33 @@ This project uses Linux command-line tools such as `awk`, `sort`, `uniq`, `cut`,
 Source: https://raw.githubusercontent.com/yinghaoz1/tmdb-movie-dataset-analysis/master/tmdb-movies.csv
 
 ---
+## TMDB Movies Dataset — Column Index Mapping
+
+The dataset contains **21 columns**. Since the analysis uses `awk -F','`, the following mapping is used throughout the project:
+
+```text
+$1  = id
+$2  = imdb_id
+$3  = popularity
+$4  = budget
+$5  = revenue
+$6  = original_title
+$7  = cast
+$8  = homepage
+$9  = director
+$10 = tagline
+$11 = keywords
+$12 = overview
+$13 = runtime
+$14 = genres
+$15 = production_companies
+$16 = release_date
+$17 = vote_count
+$18 = vote_average
+$19 = release_year
+$20 = budget_adj
+$21 = revenue_adj
+```
 
 ## Data Cleaning / Pre-processing
 
