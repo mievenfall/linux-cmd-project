@@ -5,6 +5,7 @@ This project uses Linux command-line tools such as `awk`, `sort`, `uniq`, `cut`,
 Source: https://raw.githubusercontent.com/yinghaoz1/tmdb-movie-dataset-analysis/master/tmdb-movies.csv
 
 ---
+
 ## TMDB Movies Dataset — Column Index Mapping
 
 The dataset contains **21 columns**. Since the analysis uses `awk -F','`, the following mapping is used throughout the project:
@@ -33,22 +34,21 @@ $20 = budget_adj
 $21 = revenue_adj
 ```
 
-## Data Cleaning / Pre-processing
+---
 
-### CSV Data Issues
+# Data Cleaning / Pre-processing
+
+## CSV Data Issues
 
 Before processing the dataset, several data quality issues were identified:
 
-1. Some fields contain commas `,` inside double quotation marks `"..."`.
-   Using `awk -F','` directly would therefore cause column shifting.
-
+1. Some fields contain commas `,` inside double quotation marks `"..."`. Using `awk -F','` directly would therefore cause column shifting.
 2. Some values in the `overview` column contain newline characters, causing a single movie record to span multiple lines.
-
 3. The dataset may contain duplicate movie records, so duplicate IDs need to be checked and removed.
 
 ---
 
-### Step 1 — Remove Newlines Inside Movie Records
+## Step 1 — Remove Newlines Inside Movie Records
 
 ```bash
 awk '
@@ -79,7 +79,7 @@ After combining records that contained embedded newlines, the file contained **1
 
 ---
 
-### Step 2 — Remove Duplicate Movies
+## Step 2 — Remove Duplicate Movies
 
 The `id` column is used to identify duplicate movie records.
 
@@ -91,7 +91,7 @@ After removing duplicate IDs, the dataset contained **10,866 lines**.
 
 ---
 
-### Step 3 — Replace Commas Inside Double Quotes
+## Step 3 — Replace Commas Inside Double Quotes
 
 Some text fields still contain commas inside `"..."`.
 
@@ -137,18 +137,24 @@ awk -F','
 Sort movies from newest to oldest and save the result to a new file.
 
 ```bash
-awk -F',' 'NR > 1 {
-    split($16, date, "/")
-    printf "%04d%02d%02d,%s\n", $19, date[1], date[2], $0
-}' movies_clean.csv |
-sort -t',' -k1,1nr |
-cut -d',' -f2- > movies_sorted_by_date.csv
+{
+    head -n 1 movies_clean.csv
+
+    awk -F',' 'NR > 1 {
+        split($16, date, "/")
+        printf "%04d%02d%02d,%s\n", $19, date[1], date[2], $0
+    }' movies_clean.csv |
+    sort -t',' -k1,1nr |
+    cut -d',' -f2-
+} > movies_sorted_by_date.csv
 ```
 
 **Result:**
 
-* Newest release: `Martyrs` — 12/31/15
-* Oldest release: `The Unforgiven` — 1/1/60
+* Newest release date: `12/31/15`
+* Oldest release date: `1/1/60`
+
+For example, `Martyrs` was released on `12/31/15`, while `The Unforgiven` was released on `1/1/60`.
 
 ---
 
@@ -468,18 +474,43 @@ These analyses could provide additional insights into movie trends, profitabilit
 
 ---
 
-# Directory Cleanup
+# Project Script
 
-After processing, temporary files used during data cleaning can be removed.
+The full workflow from data cleaning through Tasks 1–7 can also be executed using:
 
 ```bash
-rm movies_no_newline.csv movies_no_duplicate.csv movies_clean.csv
+chmod +x script.sh
+./script.sh
 ```
 
-The remaining files required for submission are:
+The script automatically:
+
+* cleans the raw CSV data
+* removes duplicate IDs
+* runs Tasks 1–7
+* creates the required output CSV files
+* generates `report.txt`
+* removes temporary preprocessing files
+
+---
+
+# Directory Cleanup
+
+Temporary preprocessing files are removed automatically after `script.sh` finishes:
+
+```text
+movies_no_newline.csv
+movies_no_duplicate.csv
+movies_clean.csv
+```
+
+The remaining project files are:
 
 ```text
 tmdb-movies.csv
 movies_sorted_by_date.csv
 movies_rating_over_7.5.csv
+report.txt
+script.sh
+README.md
 ```
